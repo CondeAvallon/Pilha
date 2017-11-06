@@ -35,8 +35,8 @@ public class Exe02 {
         Pilha p = new Pilha();
         char caracter;
         String numGrande = "";
-        int numero = 0;
-        int valor;
+        int numeroPopado = 0;
+        int valorPushado;
 
         for (int i = 0; i < funcao.length(); i++) {
             caracter = funcao.charAt(i);
@@ -44,11 +44,11 @@ public class Exe02 {
                 if (i < funcao.length()) {
                     if (funcao.charAt(i + 1) == ' ') {
                         if (numGrande.equals("")) {
-                            valor = Integer.parseInt(String.valueOf(caracter));
-                            p.push(valor);
+                            valorPushado = Integer.parseInt(String.valueOf(caracter));
+                            p.push(valorPushado);
                         } else {
-                            valor = Integer.parseInt(numGrande);
-                            p.push(valor);
+                            valorPushado = Integer.parseInt(numGrande);
+                            p.push(valorPushado);
                             numGrande = "";
                         }
                     } else if (funcao.charAt(i + 1) != ' ' && funcao.charAt(i + 1) != '+'
@@ -60,13 +60,13 @@ public class Exe02 {
                     }
                 }
             } else if (caracter == '+') {
-                numero = (int) p.pop() + (int) p.pop();
-                p.push(numero);
+                numeroPopado = (int) p.pop() + (int) p.pop();
+                p.push(numeroPopado);
             } else if (caracter == '*') {
-                numero = (int) p.pop() * (int) p.pop();
-                p.push(numero);
+                numeroPopado = (int) p.pop() * (int) p.pop();
+                p.push(numeroPopado);
             }
         }
-        return numero;
+        return numeroPopado;
     }
 }
