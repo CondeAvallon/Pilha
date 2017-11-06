@@ -31,13 +31,13 @@ public class Exe02 {
                 if (i < funcao.length()) {
                     if (funcao.charAt(i + 1) == ' ') {
                         int a;
-                        if (!s.equals("")) {
+                        if (s.equals("")) {
+                            a = Integer.parseInt(String.valueOf(c));
+                            p.push(a);
+                        } else {
                             a = Integer.parseInt(s);
                             p.push(a);
                             s = "";
-                        } else {
-                            a = Integer.parseInt(String.valueOf(c));
-                            p.push(a);
                         }
                     } else if (funcao.charAt(i + 1) != ' ' && funcao.charAt(i + 1) != '+'
                             && funcao.charAt(i + 1) != '*') {
