@@ -15,7 +15,7 @@ public class Exe02 {
     public static String recebeFuncao() {
         Scanner console = new Scanner(System.in);
         String funcao;
-        System.out.println("Digite uma função posfixa: ");
+        System.out.print("Digite uma função posfixa: ");
         funcao = console.nextLine();
         return funcao;
     }
@@ -23,15 +23,28 @@ public class Exe02 {
     public static int posfixa(String funcao) {
         Pilha p = new Pilha();
         char c;
-        String s;
+        String s = "";
         int numero = 0;
         for (int i = 0; i < funcao.length(); i++) {
             c = funcao.charAt(i);
             if ((c != ' ') && (c != '+') && (c != '*')) {
                 if (i < funcao.length()) {
                     if (funcao.charAt(i + 1) == ' ') {
-                        int a = Integer.parseInt(String.valueOf(c));
-                        p.push(a);
+                        int a;
+                        if (!s.equals("")) {
+                            a = Integer.parseInt(s);
+                            p.push(a);
+                            s = "";
+                        } else {
+                            a = Integer.parseInt(String.valueOf(c));
+                            p.push(a);
+                        }
+                    } else if (funcao.charAt(i + 1) != ' ' && funcao.charAt(i + 1) != '+'
+                            && funcao.charAt(i + 1) != '*') {
+                        if (s.equals("")) {
+                            s += c;
+                        }
+                        s += funcao.charAt(i + 1);
                     }
                 }
             } else if (c == '+') {
@@ -40,7 +53,7 @@ public class Exe02 {
             } else if (c == '*') {
                 numero = (int) p.pop() * (int) p.pop();
                 p.push(numero);
-            } 
+            }
         }
         return numero;
     }
